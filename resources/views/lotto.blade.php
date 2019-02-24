@@ -79,7 +79,7 @@
 
         <div class="content">
             <div class="title m-b-md">
-                Laravel
+                Laravel aaa
             </div>
 
             <div class="links">
@@ -92,6 +92,21 @@
             </div>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <script>
+        /*
+        var grwno = 1;
+        $.ajax({
+            url: "https://www.lotto.co.kr//lotto_info/getHTML",
+            //async: false,
+            data: {grwno:grwno, category:'AC01'},
+            success:function(data) {
+                console.log(data);
+            }
+        });
+        */
+    </script>
 </body>
 
 </html>
