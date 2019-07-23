@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Gate;
+use App\Extensions\CISession\Auth\CISessionGuard;
+use App\Extensions\CISession\Auth\CISessionUserProvider;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Auth;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -25,6 +27,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Auth::provider( 'ciuser', function ( $app, array $config ) {
+            return new CISessionUserProvider( $app, $config['model'] );
+        } );
+
+        Auth::extend( 'cisession', function ( $app, $name, array $config ) {
+            return new CISessionGuard( $name, Auth::createUserProvider( $config['provider'] ), $app->make( 'request' ) );
+        } );
     }
 }
